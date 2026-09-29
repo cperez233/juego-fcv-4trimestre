@@ -1,0 +1,24 @@
+{
+  "name": "un-dia-cualquiera",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Un día cualquiera · Después del clic — juego de sensibilización en ciberseguridad, FCV 4.º trimestre 2026",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "dev:lan": "vite --host",
+    "build": "vite build",
+    "preview": "vite preview",
+    "start": "node server.js",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^6.1.1",
+    "vite": "^8.3.1",
+    "vitest": "^5.0.2"
+  }
+}

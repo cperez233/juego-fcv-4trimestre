@@ -1,0 +1,294 @@
+/* ── Documentos ── */
+.doc {
+  --foco: #0b57d0;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: #f0f2f5;
+  font-family: var(--sans);
+  font-size: 13px;
+}
+
+.doc-barra {
+  padding: 8px 14px;
+  background: #fff;
+  border-bottom: 1px solid #e3e3e3;
+}
+
+.doc-archivo {
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.doc-pdf {
+  color: #2e7d32;
+  font-weight: 400;
+}
+
+.doc-menus {
+  display: flex;
+  gap: 2px;
+  padding: 2px 8px;
+  background: #fff;
+  border-bottom: 1px solid #e3e3e3;
+}
+
+.doc-menu {
+  position: relative;
+}
+
+.doc-menu__btn {
+  padding: 6px 10px;
+  border-radius: 4px;
+  font-size: 13.5px;
+}
+
+.doc-menu__btn:hover,
+.doc-menu__btn.is-abierto {
+  background: #e8eaed;
+}
+
+.doc-menu__lista {
+  position: absolute;
+  z-index: 10;
+  top: 100%;
+  left: 0;
+  min-width: 210px;
+  padding: 6px 0;
+  border-radius: 6px;
+  background: #fff;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+}
+
+.doc-menu__lista button {
+  display: block;
+  width: 100%;
+  padding: 8px 16px;
+  font-size: 14px;
+}
+
+.doc-menu__lista button:hover,
+.doc-menu__lista button:focus-visible {
+  background: #e8f0fe;
+}
+
+.doc-hoja-wrap {
+  flex: 1;
+  overflow: auto;
+  padding: 20px 12px 40px;
+}
+
+.doc-hoja {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 48px 56px;
+  background: #fff;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 15px;
+  line-height: 1.6;
+  color: #222;
+}
+
+.doc-hoja h2 {
+  font-size: 22px;
+}
+
+.doc-area {
+  color: #666;
+  margin-bottom: 18px;
+}
+
+.doc-hoja h3 {
+  margin: 18px 0 4px;
+  font-size: 16px;
+}
+
+.doc-dialogo {
+  width: min(420px, calc(100vw - 32px));
+  padding: 20px;
+  border: 0;
+  border-radius: 10px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  font-family: var(--sans);
+}
+
+.doc-dialogo::backdrop {
+  background: rgba(10, 16, 22, 0.4);
+}
+
+.doc-dialogo form {
+  display: grid;
+  gap: 12px;
+  font-size: 14px;
+}
+
+.doc-dialogo h2 {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 17px;
+}
+
+.doc-dialogo label {
+  display: grid;
+  gap: 4px;
+}
+
+.doc-dialogo input {
+  height: 34px;
+  padding: 0 8px;
+  border: 1px solid #bbb;
+  border-radius: 4px;
+}
+
+.doc-dialogo__botones {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.doc-dialogo__botones button {
+  min-height: 36px;
+  padding: 0 18px;
+  border: 1px solid #c4c7c5;
+  border-radius: 18px;
+  color: #0b57d0;
+  font-weight: 700;
+}
+
+.doc-dialogo__botones .is-primario {
+  background: #0b57d0;
+  border-color: #0b57d0;
+  color: #fff;
+}
+
+/* ── Mesa de Ayuda ── */
+.mesa {
+  --foco: #0b57d0;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: #f5f6f8;
+  font-family: var(--sans);
+  font-size: 14px;
+  overflow: auto;
+}
+
+.mesa-cab {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  padding: 14px 22px;
+  background: #3b4a5a;
+  color: #fff;
+}
+
+.mesa-cab strong {
+  font-size: 18px;
+}
+
+.mesa-cab span {
+  color: #c9d3dc;
+}
+
+.mesa-cuerpo {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+  gap: 18px;
+  padding: 20px;
+}
+
+.mesa-form,
+.mesa-casos {
+  padding: 18px 20px;
+  border-radius: 6px;
+  background: #fff;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.mesa-form h2,
+.mesa-casos h2 {
+  font-size: 16px;
+  margin-bottom: 12px;
+}
+
+.mesa-form form {
+  display: grid;
+  gap: 8px;
+}
+
+.mesa-form select,
+.mesa-form textarea {
+  padding: 8px;
+  border: 1px solid #bcc4cc;
+  border-radius: 4px;
+  font-size: 14px;
+  background: #fff;
+}
+
+.mesa-form textarea {
+  resize: vertical;
+  letter-spacing: 0.08em;
+}
+
+.mesa-nota {
+  color: #6b7780;
+  font-size: 12.5px;
+}
+
+.mesa-error {
+  color: #b3261e;
+  font-size: 13px;
+}
+
+.mesa-btn {
+  justify-self: start;
+  margin-top: 6px;
+  padding: 10px 20px;
+  border-radius: 4px;
+  background: #3b4a5a;
+  color: #fff;
+  font-weight: 700;
+}
+
+.mesa-ok {
+  padding: 14px;
+  border-radius: 6px;
+  background: #e8f5e9;
+  color: #1b5e20;
+  font-weight: 700;
+}
+
+.mesa-casos ul {
+  display: grid;
+  gap: 10px;
+}
+
+.mesa-estado {
+  padding: 1px 8px;
+  border-radius: 9px;
+  background: #fff3e0;
+  color: #8a4b00;
+  font-size: 12.5px;
+}
+
+.mesa-estado.is-cerrado {
+  background: #eceff1;
+  color: #455a64;
+}
+
+@media (max-width: 767px) {
+  .mesa-cuerpo {
+    grid-template-columns: 1fr;
+    padding: 12px;
+  }
+
+  .doc-hoja {
+    padding: 24px 18px;
+  }
+
+  .doc-menu__btn {
+    min-height: 40px;
+  }
+}

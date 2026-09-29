@@ -1,0 +1,2 @@
+# API vacía — evita 404 ruidosos en Vite sin PHP
+# El frontend usa /api/*.php; sin backend las peticiones fallan en silencio.

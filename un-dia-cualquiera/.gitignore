@@ -1,0 +1,5 @@
+node_modules/
+dist/
+# Cédulas autorizadas y participaciones: nunca en el repositorio ni en public/
+data/*
+!data/README.md

@@ -1,0 +1,438 @@
+== 1. Resumen ==
+'''Ciber Héroes Doomsday''' es el juego web de la FCV para clasificar '''activos de información''' (niveles '''N1–N4'''). El jugador entra con cédula autorizada, recorre la intro de los héroes y completa '''4 rondas''' con '''3 vidas (rayos) globales'''. Un acierto suma '''1 punto'''; si se agotan los rayos, la partida termina.
+
+No es un catálogo de pantallas: el foco es '''cómo opera el frontend''', '''cómo persiste el backend''' y '''cómo está modelada la base de datos'''.
+
+'''URL interna de servicio:''' <code>http://172.16.66.48:5005</code> (Node sirve el build de <code>dist/</code> y <code>POST /api/score</code>).
+
+'''Stack'''
+
+* Frontend: '''Vite + React 18''' (SPA en <code>max-heroes-doomsday.jsx</code>).
+* Backend de servicio: '''Node.js''' (<code>server.js</code>) en <code>0.0.0.0:5005</code>.
+* Persistencia activa: '''SQLite''' (<code>data-ciber-heroes/ciberheroes.db</code>) + carpeta por cédula.
+* API PHP/MySQL (<code>api/*.php</code>): esquema listo para otro despliegue; en este host Node '''no ejecuta PHP'''.
+----
+
+== 2. Frontend ==
+
+=== 2.1 Qué es la interfaz ===
+SPA a pantalla completa, visual de cómic (Anton / Barlow Condensed, paleta oro-verde-azul, héroes y Doctor Doom). El CSS va embebido en el JSX (<code>&lt;style&gt;{CSS}&lt;/style&gt;</code>), por eso la CSP de producción incluye <code>style-src 'unsafe-inline'</code>.
+
+Ilustraciones y voces van empaquetadas (imágenes WebP en base64 + MP3 en <code>public/voces/</code>). La intro muestra a cada héroe a mayor tamaño (~30 % más que el layout original).
+
+=== 2.2 Flujo de pantallas ===
+
+# '''Bienvenida''' — cédula (4–15 dígitos). Lista de acceso: <code>/data/identificaciones.csv</code>.
+# '''Intro''' — briefing de La Centinela, El Elástico, La Antorcha y Trueno (typewriter + voz).
+# '''Instrucciones''' — 3 retos por ronda, 3 rayos para todo el juego, 4 mecánicas.
+# '''Juego''' — 4 rondas; las opciones se mezclan y se reetiquetan A/B/C.
+# '''Resultado''' — victoria (Doom derrotado) o derrota (sin rayos). Una sola participación por cédula.
+
+Si el navegador se cierra a mitad de partida, al volver a entrar '''se reanuda sola''' (sesión <code>en_curso</code> en <code>localStorage</code>). Tras ganar o perder '''no se puede volver a jugar''' con esa cédula (clave <code>ch-participados</code>).
+
+=== 2.3 Reglas de juego ===
+{| class="wikitable"
+!Regla
+!Valor
+|-
+|Vidas (rayos)
+|'''3 para todo el juego''' (no se reinician por ronda)
+|-
+|Preguntas por ronda
+|'''3'''
+|-
+|Avance de ronda
+|Completar las 3 preguntas con al menos 1 rayo
+|-
+|Puntaje
+|'''1 punto = 1 respuesta correcta''' (máximo 12)
+|-
+|Mezcla
+|Opciones barajadas; la correcta no queda siempre en A
+|}
+
+=== 2.4 Rondas y héroes ===
+{| class="wikitable"
+!Ronda
+!Héroe
+!Modo
+!Qué hace el jugador
+|-
+|1 · Escudo
+|La Centinela
+|<code>bandejas</code>
+|Clasifica el activo en N1–N4
+|-
+|2 · Detección
+|El Elástico
+|<code>error</code>
+|Detecta el error crítico en la historia
+|-
+|3 · Investigación
+|La Antorcha
+|<code>investiga</code>
+|Elige la pregunta útil (la pista revela el nivel)
+|-
+|4 · Batalla final
+|Trueno
+|<code>decision</code>
+|Elige la acción que mejor protege la información
+|}
+
+Acierto → el héroe golpea a Doom (baja su poder 3/3). Error → Doom ataca y se pierde un rayo.
+
+=== 2.5 Niveles N1–N4 ===
+El contenido didáctico es la clasificación institucional de activos (público / interno / confidencial / restringido). El jugador debe ubicar cada caso en el nivel correcto o detectar el fallo de manejo.
+
+=== 2.6 Sesión en el cliente ===
+Archivo <code>src/session.js</code>:
+
+* <code>localStorage</code> clave <code>ch-sesion:{cedula}</code>: pantalla, ronda, puntaje, rayos, <code>startedAt</code>, estado.
+* Lista <code>ch-participados</code>: cédulas que ya terminaron.
+* Reloj: arranca al pulsar '''Iniciar'''; la duración se muestra en texto (<code>31 segundos</code>, <code>2 minutos</code>, <code>55 minutos 53 segundos</code>).
+* <code>enviarScore()</code> → <code>POST /api/score</code> (si falla, intenta <code>/api/score.php</code>).
+
+'''Cuándo se guarda en servidor'''
+
+* Al '''terminar una ronda''' → evento <code>ronda_ok</code> (la ronda que se acaba de completar). La ronda siguiente '''no se guarda''' hasta que se termine o se pierdan los rayos.
+* Al '''quedarse sin rayos''' → <code>ronda_loss</code>.
+* Al '''ganar las 4 rondas''' → <code>fin</code>.
+----
+
+== 3. Backend ==
+
+=== 3.1 Qué corre en este host ===
+<code>node server.js</code> (puerto '''5005''', host '''0.0.0.0'''):
+
+# Sirve estáticos de <code>dist/</code> (HTML/JS/CSS/voces/CSV).
+# Acepta <code>POST /api/score</code> y <code>POST /api/score.php</code> (mismo handler Node).
+# Escribe carpeta de participación + SQLite.
+# Aplica cabeceras de seguridad (<code>security-headers.js</code>): CSP, <code>X-Frame-Options: DENY</code>, <code>nosniff</code>, HSTS si hay HTTPS.
+
+Keep-alive (para que no se caiga al cerrar la sesión del agente):
+
+* Supervisor: <code>scripts/game-fcv-run.sh</code> (si Node sale, relanza a los 5 s).
+* Vigilancia: <code>scripts/ensure-game.sh</code> cada minuto (crontab) y en <code>@reboot</code>. Comprueba que <code>http://127.0.0.1:5005/</code> responda.
+* Unidad systemd de referencia: <code>systemd/game-fcv.service</code> (Restart=always).
+
+Logs: <code>logs/game-fcv.log</code>.
+
+=== 3.2 Flujo de persistencia ===
+
+# El frontend hace <code>POST /api/score</code> con JSON (cédula, evento, puntaje, ronda, tiempos, rayos, aciertos de la ronda).
+# Node llama <code>saveParticipationFolder()</code> (<code>src/save-participation.js</code>):
+## Crea/actualiza <code>data-ciber-heroes/DDMMAAAA - CEDULA/</code>
+## Escribe <code>resultado.json</code> (snapshot), <code>eventos.jsonl</code> (append) y <code>resumen.txt</code>
+## Lanza <code>python3 scripts/db_ciberheroes.py save</code> → INSERT en SQLite
+# Duración = <code>endedAt − startedAt</code> en '''segundos enteros''' (sin redondeo cruzado). El Excel muestra esa duración en español.
+
+=== 3.3 Endpoints (servicio Node) ===
+{| class="wikitable"
+!Método
+!Ruta
+!Uso
+|-
+|GET
+|<code>/</code> y estáticos
+|SPA + voces + <code>/data/identificaciones.csv</code>
+|-
+|POST
+|<code>/api/score</code>
+|Guardar evento de ronda / fin
+|-
+|POST
+|<code>/api/score.php</code>
+|Alias del mismo handler (compatibilidad)
+|}
+
+Payload típico:<syntaxhighlight lang="json">
+{
+  "documento": "1007511633",
+  "evento": "ronda_ok",
+  "puntaje": 3,
+  "respuestasCorrectas": 3,
+  "gano": false,
+  "ronda": 1,
+  "aciertosRonda": 3,
+  "preguntasRonda": 3,
+  "vidasRestantes": 3,
+  "durationMs": 31989,
+  "startedAt": "2026-08-21T19:54:17.374Z",
+  "endedAt": "2026-08-21T19:54:49.363Z",
+  "resultados": ["win"],
+  "juego": "ciber-heroes-doomsday"
+}
+</syntaxhighlight>
+
+Eventos: <code>ronda_ok</code> | <code>ronda_loss</code> | <code>fin</code>.
+
+=== 3.4 API PHP (opcional / otro despliegue) ===
+Si Apache ejecuta PHP + MySQL <code>ciberheroes</code>:
+
+{| class="wikitable"
+!Archivo
+!Uso
+|-
+|<code>api/validar.php</code>
+|Cédula en <code>ch_cedulas</code>; bloquea si ya hay fila en <code>ch_resultados</code>; devuelve sesión <code>en_curso</code>
+|-
+|<code>api/sesion.php</code>
+|UPSERT de <code>ch_sesiones</code>
+|-
+|<code>api/score.php</code>
+|INSERT de resultado + carpeta + cierre de sesión
+|-
+|<code>api/schema.sql</code>
+|Tablas MySQL (sin <code>ch_eventos</code>; el detalle de rondas está en SQLite)
+|}
+
+En el servidor Node actual estos PHP se copian a <code>dist/api</code> pero '''se sirven como texto''', no se ejecutan.
+
+=== 3.5 Exportación Excel ===
+<pre>
+python3 scripts/exportar_excel.py
+python3 scripts/exportar_excel.py /ruta/salida.xlsx
+</pre>
+Salida: <code>data-ciber-heroes/ciber-heroes.xlsx</code> (hojas '''Participaciones''' y '''Eventos''') + CSV. Duración en texto: p. ej. 120 s → '''2 minutos'''.
+
+También: <code>python3 scripts/db_ciberheroes.py list|reset|import</code>.
+----
+
+== 4. Base de datos ==
+
+Hay '''dos capas''': archivos por participación (siempre) y SQLite (histórico consultable). MySQL es el destino previsto si se activa PHP.
+
+=== 4.1 Diagrama (entidades) ===
+El modelo operativo en este host:
+
+<graphviz>
+digraph ciberheroes {
+  rankdir=LR;
+  graph [fontname="sans-serif", bgcolor="transparent"];
+  node [shape=record, fontname="sans-serif", fontsize=11];
+  edge [fontname="sans-serif", fontsize=10];
+
+  CEDULA [label="{Cédula autorizada|identificaciones.csv\l(o ch_cedulas en MySQL)}"];
+  SES [label="{ch_sesiones|documento PK\lpantalla\lronda_idx\lpuntaje\lestado\lstarted_at}"];
+  EVT [label="{ch_eventos|id PK\ldocumento\levento\lronda 1-4\lrespuestas_correctas\laciertos_ronda\lduration_s / tiempo\lvidas}"];
+  RES [label="{ch_resultados|id PK\ldocumento\levento\lronda\lrespuestas_correctas\lgano\lduration_ms / duration_s / tiempo\lresultados_json}"];
+  FS [label="{Carpeta DDMMAAAA - CEDULA|resultado.json\leventos.jsonl\lresumen.txt}"];
+
+  CEDULA -> SES [label="1 sesión abierta"];
+  CEDULA -> EVT [label="1..N eventos de ronda"];
+  CEDULA -> RES [label="1..N snapshots"];
+  EVT -> FS [label="append jsonl"];
+  RES -> FS [label="overwrite snapshot"];
+}
+</graphviz>
+
+Vista en texto (si el wiki no tiene GraphViz):<syntaxhighlight lang="text">
+[identificaciones.csv / ch_cedulas]
+            |
+            | 1
+            v
+     documento (cédula)
+        /      |       \
+       /       |        \
+      v        v         v
+ch_sesiones  ch_eventos  ch_resultados
+ (1 fila)     (N filas)   (N snapshots)
+      \        |         /
+       \       |        /
+        v      v       v
+   data-ciber-heroes/DDMMAAAA - CEDULA/
+        resultado.json
+        eventos.jsonl
+        resumen.txt
+</syntaxhighlight>
+
+=== 4.2 SQLite — <code>ciberheroes.db</code> ===
+Ruta: <code>data-ciber-heroes/ciberheroes.db</code> (o env <code>CH_SQLITE_PATH</code>).
+
+==== Tabla <code>ch_eventos</code> (línea de tiempo) ====
+Una fila '''cada vez que se cierra una ronda''' (o se pierde / se gana).
+
+{| class="wikitable"
+!Columna
+!Tipo
+!Significado
+|-
+|<code>id</code>
+|INTEGER PK
+|Autoincremental
+|-
+|<code>documento</code>
+|TEXT
+|Cédula
+|-
+|<code>evento</code>
+|TEXT
+|<code>ronda_ok</code> / <code>ronda_loss</code> / <code>fin</code>
+|-
+|<code>ronda</code>
+|INTEGER
+|Ronda '''1–4''' (la que se acaba de jugar)
+|-
+|<code>puntaje</code> / <code>respuestas_correctas</code>
+|INTEGER
+|Aciertos acumulados (1 por pregunta bien)
+|-
+|<code>aciertos_ronda</code>
+|INTEGER
+|Aciertos en esa ronda (0–3)
+|-
+|<code>preguntas_ronda</code>
+|INTEGER
+|Preguntas respondidas en esa ronda
+|-
+|<code>vidas</code>
+|INTEGER
+|Rayos restantes al guardar
+|-
+|<code>duration_ms</code> / <code>duration_s</code> / <code>tiempo</code>
+|INT / INT / TEXT
+|Tiempo desde Iniciar hasta el evento
+|-
+|<code>started_at</code> / <code>ended_at</code> / <code>fecha</code>
+|TEXT
+|ISO inicio/fin y registro local
+|-
+|<code>gano</code>
+|INTEGER
+|1 si victoria final
+|}
+
+==== Tabla <code>ch_resultados</code> (snapshot) ====
+Misma información más <code>resultados_json</code> (lista de <code>win</code> por rondas cerradas), <code>ronda_idx</code> (0-based, legado) y <code>juego</code> = <code>ciber-heroes-doomsday</code>. El Excel toma la '''última fila por cédula''' como participación vigente.
+
+==== Tabla <code>ch_sesiones</code> ====
+Pensada para reanudar en servidor (PHP). En Node la reanudación vive sobre todo en <code>localStorage</code>. Campos: <code>documento</code> PK, <code>pantalla</code>, <code>ronda_idx</code>, <code>puntaje</code>, <code>estado</code> (<code>en_curso</code> / <code>participado</code> / <code>cerrada</code>), <code>gano</code>.
+
+=== 4.3 MySQL — esquema <code>api/schema.sql</code> ===
+BD <code>ciberheroes</code> ('''no''' reutilizar la del Mundial):
+
+{| class="wikitable"
+!Tabla
+!Rol
+|-
+|<code>ch_cedulas</code>
+|Allow-list de cédulas (alternativa al CSV)
+|-
+|<code>ch_sesiones</code>
+|Partida abierta / reanudación
+|-
+|<code>ch_resultados</code>
+|Score final (sin columnas extra de evento/ronda 1-based)
+|}
+
+=== 4.4 Archivos por participación ===
+<code>data-ciber-heroes/21082026 - 1007511633/</code>
+
+{| class="wikitable"
+!Archivo
+!Uso
+|-
+|<code>resultado.json</code>
+|Último snapshot (ronda, puntaje, duración, evento)
+|-
+|<code>eventos.jsonl</code>
+|Un JSON por evento (histórico)
+|-
+|<code>resumen.txt</code>
+|Texto legible para revisión rápida
+|}
+----
+
+== 5. Cómo se ve una partida en datos ==
+Ejemplo real: cédula <code>1007511633</code> completa la ronda 1 (3/3) y pasa a la 2.
+
+{| class="wikitable"
+!Campo
+!Valor
+|-
+|Evento
+|<code>ronda_ok</code>
+|-
+|Resultado
+|EN CURSO (aún no ganó ni perdió el juego)
+|-
+|Ronda guardada
+|'''1''' (la 2 se guardará al terminarla o al perder)
+|-
+|Respuestas correctas
+|3
+|-
+|Rayos
+|3
+|-
+|Duración
+|p. ej. '''31 segundos'''
+|}
+----
+
+== 6. Despliegue y operación ==
+{| class="wikitable"
+!Ítem
+!Valor
+|-
+|Build
+|<code>npm run build</code> → <code>dist/</code>
+|-
+|Arranque
+|<code>node server.js</code> o supervisor <code>scripts/game-fcv-run.sh</code>
+|-
+|Puerto
+|5005 (<code>PORT</code> / <code>HOST</code>)
+|-
+|Allow-list
+|<code>public/data/identificaciones.csv</code> (copiado al build)
+|-
+|Datos
+|<code>data-ciber-heroes/</code> (no borrar el <code>.db</code> en caliente sin backup)
+|-
+|Excel
+|<code>python3 scripts/exportar_excel.py</code>
+|-
+|Reset de pruebas
+|<code>python3 scripts/db_ciberheroes.py reset</code> + en el navegador <code>localStorage.removeItem("ch-participados")</code>
+|}
+
+'''Importante:''' el dominio público <code>juegoheroes.fcv.org</code> puede apuntar a '''otro host''' (p. ej. casia). Subir código a este repo y servir en <code>:5005</code> '''no actualiza solo''' ese dominio.
+----
+
+== Inventario de imágenes ==
+Subir en '''Especial:Subir archivo''' con el nombre indicado (capturas locales del juego en :5005).
+
+=== Ítem 1 — Bienvenida / login por cédula ===
+[[Archivo:CiberHeroes-login.png|centro|miniaturadeimagen|700x700px|Pantalla de acceso con cédula autorizada]]
+
+=== Ítem 2 — Intro de héroes ===
+[[Archivo:CiberHeroes-intro.png|centro|miniaturadeimagen|700x700px|Intro con personaje a mayor tamaño y briefing]]
+
+=== Ítem 3 — Instrucciones ===
+[[Archivo:CiberHeroes-instrucciones.png|centro|miniaturadeimagen|700x700px|Reglas: 3 rayos globales y 4 rondas]]
+
+=== Ítem 4 — Ronda 1 bandejas N1–N4 ===
+[[Archivo:CiberHeroes-ronda1.png|centro|miniaturadeimagen|700x700px|Clasificación de activo en bandejas]]
+
+=== Ítem 5 — Ronda 2 detección de error ===
+[[Archivo:CiberHeroes-ronda2.png|centro|miniaturadeimagen|700x700px|Historia: detectar el error crítico]]
+
+=== Ítem 6 — Resultado / Doom ===
+[[Archivo:CiberHeroes-resultado.png|centro|miniaturadeimagen|700x700px|Pantalla final con aciertos y tiempo]]
+
+=== Ítem 7 — Excel de participaciones ===
+[[Archivo:CiberHeroes-excel.png|centro|miniaturadeimagen|700x700px|Exportación: duración en minutos/segundos, ronda y aciertos]]
+----
+
+== Checklist ==
+
+* SPA construida y servida en <code>:5005</code>.
+* CSV de cédulas cargando; una participación por cédula.
+* Guardado al pasar de ronda (<code>ronda_ok</code>) y al perder/ganar.
+* SQLite + carpeta por cédula coherentes (puntaje = aciertos; ronda 1–4; duración en texto).
+* Excel generable sin dependencias extra.
+* Supervisor / crontab manteniendo el puerto 5005.
+* Capturas subidas al inventario.
+
+----''Documento wiki — Ciber Héroes Doomsday (frontend React, backend Node, SQLite + carpetas) 2026.''
