@@ -27,7 +27,7 @@ function nombreAccion(correo, verbo) {
   return correo.parte ? `${correo.parte}_${verbo}` : verbo;
 }
 
-/** Reenviar a Seguridad Informática = reportar. A cualquier otra persona = reenviar_otro. */
+/** Reenviar a Ciberseguridad = reportar. A cualquier otra persona = reenviar_otro. */
 function verboDeEnvio(modo, para) {
   if (modo === "reenviar") return para.includes(config.canales.seguridad) ? "reportar" : "reenviar_otro";
   return "responder";

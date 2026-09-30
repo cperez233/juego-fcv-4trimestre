@@ -19,7 +19,7 @@ function resultado(puntos, accion, lista, extra = {}) {
   return { puntos, accion, ms: a?.ms ?? null, horaJuego: a?.horaJuego ?? null, banderas: [], ...extra };
 }
 
-/** Recupera +1 si reenvió a Seguridad después del error (guion 8.6). */
+/** Recupera +1 si reenvió a Ciberseguridad después del error (guion 8.6). */
 function conRecuperacion(res, lista, accionError, accionReporte) {
   const iErr = indice(lista, accionError);
   const iRep = lista.findIndex((a, i) => i > iErr && a.accion === accionReporte);

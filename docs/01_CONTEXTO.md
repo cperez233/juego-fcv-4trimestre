@@ -18,7 +18,7 @@ Archivo: `Referencia /Borrador capacitación 4to trimestre.docx`. Lema: *Pequeñ
 
 ## Canales institucionales (confirmados por Cristian)
 
-- Correo de Seguridad Informática: **seguridadinformatica@fcv.org**
+- Correo de Ciberseguridad: **ciberseguridad@fcv.org**
 - WhatsApp: **300 779 3096**
 - Mesa de Ayuda: **helpdesk@fcv.org** (los casos se abren por un portal GLPI; la URL del portal aún no se conoce → en el juego se llama simplemente "Mesa de Ayuda").
 - Dominio institucional del correo: **@fcv.org**. Webmail: Zimbra (`webmail.fcv.org`). Algunos usan Gmail, pero la mayoría Zimbra.
@@ -55,7 +55,7 @@ Se evaluaron 4 ideas (escritorio simulado, incidente en reversa, "ahora eres el 
 | El tutorial **no** dice que se puede revisar remitente/enlaces | Para medir el comportamiento natural de inspección. |
 | Aviso de privacidad en el ingreso: uso agregado, no sancionatorio, Ley 1581 de 2012 | Si la gente cree que su jefe verá sus errores, juega "a quedar bien". El texto lo valida jurídica (pendiente). |
 | Una partida puntuada por cédula + modo práctica | Si repiten, ya conocen las trampas y el dato deja de servir; la práctica conserva el valor pedagógico. |
-| En Zimbra, "Spam" ≠ reportar | El botón Spam solo mueve el correo y entrena el filtro; no avisa a nadie. Reportar es **reenviar a seguridadinformatica@fcv.org**. El juego enseña eso. |
+| En Zimbra, "Spam" ≠ reportar | El botón Spam solo mueve el correo y entrena el filtro; no avisa a nadie. Reportar es **reenviar a ciberseguridad@fcv.org**. El juego enseña eso. |
 | Consecuencia del evento 7 según el error cometido | Para que la relación causa-efecto sea clara (credenciales → correos enviados; malware → archivos bloqueados, etc.). |
 | Perfiles con reglas explícitas y "El que reacciona" con prioridad | Es el comportamiento que más se quiere premiar. |
 | Rebobinado corto (todos los errores + máx. 2 aciertos, con "Saltar") | Mantener la partida en 6–7 min. |

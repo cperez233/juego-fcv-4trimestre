@@ -107,7 +107,7 @@ Actualiza esta bitácora al cerrar cada fase o sesión: qué se hizo, qué qued�
 - **Pendientes** con pista de en qué programa se hacen, sin revelar el camino seguro.
 - **Sin "decisiones"** en título, revelación ni consejos.
 - **Rebobinado**: misma mecánica; ahora todos los errores (incluye cada distracción, cada pendiente tarde y una tarjeta final con los pendientes sin hacer) + los 3 mejores aciertos.
-- **Ganador**: mayor puntaje; empate → menor tiempo de juego activo (`duracionActivaMs`, se envía en el resultado y se muestra en la carta).
+- **Ganador**: mayor puntaje; empate → sorteo en el servidor (cambiado el 30-sep-2026; antes desempataba el menor tiempo activo). `duracionActivaMs` se sigue enviando y mostrando, solo como dato.
 - Verificado: 111 pruebas; partida perfecta 44/44; partida con errores → 17 tarjetas (3 distracciones + pendientes sin hacer).
 
 **Pendiente**: verificar el dominio falso `mesadeayuda-fcv.com`; lo demás igual que la entrada anterior (backend, textos ✎, perfil por defecto).
@@ -129,13 +129,13 @@ Actualiza esta bitácora al cerrar cada fase o sesión: qué se hizo, qué qued�
 - Corregido el cuelgue a la 1:00 p.m. (el paso a la revelación dependía de todo el estado y un aviso que se cerraba lo cancelaba).
 - Avisos: pila única abajo a la derecha, máx. 2, 7 s, con ✕; centro de notificaciones al tocar la hora (`CentroNotificaciones.jsx`) con campana y calendario; estados de las apps aparte (`EstadoApp`); sin aviso al completar pendientes.
 - Escritorio Windows 11: `FondoEscritorio.jsx` (SVG propio), barra translúcida, pendientes en la barra, bandeja agrupada, fecha corta.
-- Circular de Seguridad Informática en el buzón (`relleno.js`, `r-seguridad`) que enseña que reportar = reenviar.
+- Circular de Ciberseguridad en el buzón (`relleno.js`, `r-seguridad`) que enseña que reportar = reenviar.
 - Revisión contra el documento base: las 5 diapositivas de errores tienen eventos (ver respuesta a Cristian). E10 y E12 (chat) quedan fuera de las 5, agrupados como "Confiar sin verificar quién te escribe".
 - Verificado: 115 pruebas; partida perfecta 44/44; jornada sin tocar nada termina sola y pasa a la revelación; móvil sin desbordes.
 
 ## 30-sep-2026 (noche) — v5.4: cómo reportar y ritmo que respeta al jugador
 
-- Repaso de la carta: "−N" en rojo solo si restó; "faltó N" en gris si sumó menos de lo posible. Textos corregidos: ya no mencionan un botón "Reportar a Seguridad" que no existe (dicen Reenviar → seguridadinformatica@fcv.org). E6 aclara que abrir el enlace no resta.
+- Repaso de la carta: "−N" en rojo solo si restó; "faltó N" en gris si sumó menos de lo posible. Textos corregidos: ya no mencionan un botón "Reportar a Seguridad" que no existe (dicen Reenviar → ciberseguridad@fcv.org). E6 aclara que abrir el enlace no resta.
 - Tutorial y "Cómo se juega" explican cómo reportar (guion 13.1).
 - Reloj (guion 13.2): no se adelanta con actividad reciente del jugador ni con una pregunta del chat por responder; el adelanto se corta si el jugador actúa.
 - Verificado: 115 pruebas; partida perfecta; partida con errores; jornada quieta termina sola (pausa máx. ~12 s reales); con clics seguidos el reloj nunca salta.
@@ -181,3 +181,10 @@ Actualiza esta bitácora al cerrar cada fase o sesión: qué se hizo, qué qued�
 
 - 14B llega a las 9:15 (E14B), aparte de la encuesta real de las 8:50; tutorial sin "resta lo que sale mal". Respuestas de Andrea sin cambios. 123 pruebas; perfecta 49/49; partida con errores 18 tarjetas.
 - **Siguiente:** otra prueba con alguien que no haya jugado.
+
+## 30-sep-2026 — Desempate por sorteo
+
+- Pedido de Cristian: gana el mayor puntaje; si hay empate, sorteo (antes: menor tiempo activo y otros criterios). Actualizados tutorial (`textos.js`), guion 8.7 y 10.4, `compararParaRanking` (solo puntaje; empate = 0) y su prueba. El servidor hará el sorteo en la Fase 5. El tiempo de juego se sigue mostrando solo como dato.
+
+- Corrección: el correo de reporte es `ciberseguridad@fcv.org` (no seguridadinformatica@) y el área se llama "Ciberseguridad" en todo el juego y los docs.
+- Los "Seguridad" sueltos (chat, rebobinado, guion) también pasaron a "Ciberseguridad"; se dejaron "Seguridad y Salud en el Trabajo" y "Seguridad de la información".

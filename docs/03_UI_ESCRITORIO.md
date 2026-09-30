@@ -47,7 +47,7 @@ No se reproducen logos de marcas (Zimbra, navegadores, sistemas operativos). Se 
 - **Aviso legal institucional** al pie de los correos de `@fcv.org`: párrafo gris, itálica, letra pequeña, justificado (texto genérico corto redactado para el juego). Los correos falsos no lo tienen: es una señal más, sin que el juego la mencione.
 - Al pie: "Mostrar texto entre comillas - Responder - Responder a todos - Reenviar - Más acciones".
 
-**Redactar / Reenviar:** panel sencillo con Para (autocompletar solo con los contactos del juego), Asunto (prellenado "RV: …"), cuerpo, botón **Enviar**. Reenviar a Seguridad Informática = reporte.
+**Redactar / Reenviar:** panel sencillo con Para (autocompletar solo con los contactos del juego), Asunto (prellenado "RV: …"), cuerpo, botón **Enviar**. Reenviar a Ciberseguridad = reporte.
 
 **Tipografía y tono:** sans del sistema (Arial/Helvetica), 13 px en la interfaz, bordes grises finos, sombras mínimas. Debe sentirse como el webmail real, no como una versión "mejorada".
 

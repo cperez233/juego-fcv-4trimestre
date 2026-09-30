@@ -63,7 +63,7 @@ export const config = {
 
   // Canales institucionales (docs/01_CONTEXTO.md).
   canales: {
-    seguridad: "seguridadinformatica@fcv.org",
+    seguridad: "ciberseguridad@fcv.org",
     whatsapp: "300 779 3096",
     mesaAyuda: "helpdesk@fcv.org",
   },
@@ -81,7 +81,7 @@ export const config = {
 
   // Únicos contactos que ofrece el autocompletar al reenviar o redactar.
   contactos: [
-    { nombre: "Seguridad Informática", correo: "seguridadinformatica@fcv.org" },
+    { nombre: "Ciberseguridad", correo: "ciberseguridad@fcv.org" },
     { nombre: "Mesa de Ayuda", correo: "helpdesk@fcv.org" },
     { nombre: "Andrea Rincón", correo: "andrea.rincon@fcv.org" },
     { nombre: "Julián Ortiz", correo: "julian.ortiz@fcv.org" },

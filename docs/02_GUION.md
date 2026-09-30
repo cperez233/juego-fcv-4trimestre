@@ -12,11 +12,11 @@
 >
 > **v5.4 (30-sep-2026, pedido por Cristian):** la sección 13 manda en el tutorial (cómo reportar) y en el ritmo mientras el jugador trabaja.
 >
-> **v5.3 (30-sep-2026, pedido por Cristian):** la sección 12 manda en avisos, escritorio tipo Windows 11 y la circular de Seguridad Informática.
+> **v5.3 (30-sep-2026, pedido por Cristian):** la sección 12 manda en avisos, escritorio tipo Windows 11 y la circular de Ciberseguridad.
 >
 > **v5.2 (30-sep-2026, pedido por Cristian):** la sección 11 manda sobre la 8.2, 9 y 10 en ritmo del reloj, pendiente de Spam, carta final y aciertos del rebobinado. El máximo sigue en 44.
 >
-> **v5.1 (29-sep-2026, pedido por Cristian):** la sección 10 manda sobre la 9 (evento E14, pendientes con pista, sin hablar de "decisiones", rebobinado con todos los errores, desempate por rapidez; máximo 44).
+> **v5.1 (29-sep-2026, pedido por Cristian):** la sección 10 manda sobre la 9 (evento E14, pendientes con pista, sin hablar de "decisiones", rebobinado con todos los errores, desempate por sorteo (v5.7, antes por rapidez); máximo 44).
 >
 > **v5.0 (28-sep-2026, aprobado por Cristian):** la sección 9 manda sobre todo lo anterior (más eventos, trampas más creíbles, chats separados, distracciones, pendientes con hora límite, puntaje máximo 41).
 >
@@ -40,7 +40,7 @@ Eres un colaborador de la FCV en un día normal frente al computador. No hay pre
 - **Tu jefe:** Andrea Rincón, Coordinación de área — `andrea.rincon@fcv.org`.
 - **Compañero:** Julián Ortiz — `julian.ortiz@fcv.org` (aparece en E4 y en 7B).
 - **Proveedor:** Suministros Andinos S.A.S. — `ventas@suministrosandinos.com.co` (E6).
-- **Contactos disponibles al reenviar/redactar:** Seguridad Informática `<seguridadinformatica@fcv.org>`, Mesa de Ayuda `<helpdesk@fcv.org>`, Andrea Rincón, Julián Ortiz.
+- **Contactos disponibles al reenviar/redactar:** Ciberseguridad `<ciberseguridad@fcv.org>`, Mesa de Ayuda `<helpdesk@fcv.org>`, Andrea Rincón, Julián Ortiz.
 
 ---
 
@@ -71,7 +71,7 @@ Eres un colaborador de la FCV en un día normal frente al computador. No hay pre
 > Tus datos se tratan conforme a la Ley 1581 de 2012 y a la política de tratamiento de datos de la FCV. [Ver política]
 > [ Iniciar jornada ]
 
-Errores de ingreso: documento no autorizado → "Tu documento no está habilitado para esta capacitación. Escribe a seguridadinformatica@fcv.org." Ya participó → "Ya completaste tu jornada. ¡Gracias! Puedes jugar en modo práctica." + botón.
+Errores de ingreso: documento no autorizado → "Tu documento no está habilitado para esta capacitación. Escribe a ciberseguridad@fcv.org." Ya participó → "Ya completaste tu jornada. ¡Gracias! Puedes jugar en modo práctica." + botón.
 *(Texto de privacidad pendiente de validación por jurídica; enlace a la política pendiente.)*
 
 ### P2 — Intro (≈15 s, se puede saltar)
@@ -94,7 +94,7 @@ Errores de ingreso: documento no autorizado → "Tu documento no está habilitad
 
 **Chat del jefe (presión):** 7:20 *"Buenos días. Necesito el informe en PDF antes del mediodía, porfa."* · 9:40 *"¿Cómo vas con el informe?"* · 11:30 *"¿¿Ya??"*
 
-**Cómo se reporta en el juego (igual que en la vida real):** en el correo, botón **Reenviar** → destinatario **Seguridad Informática** → Enviar. El botón **Spam** solo mueve el mensaje a la carpeta Spam (equivale a eliminar: protege al jugador pero no avisa a nadie). Reenviar a cualquier otra persona = 0 puntos, se registra.
+**Cómo se reporta en el juego (igual que en la vida real):** en el correo, botón **Reenviar** → destinatario **Ciberseguridad** → Enviar. El botón **Spam** solo mueve el mensaje a la carpeta Spam (equivale a eliminar: protege al jugador pero no avisa a nadie). Reenviar a cualquier otra persona = 0 puntos, se registra.
 
 ---
 
@@ -110,7 +110,7 @@ Señales (Remitente → Mensaje → Enlace → Acción): dominio ≠ `@fcv.org`;
 
 | Acción | Puntos |
 |---|---|
-| Reenviar a Seguridad Informática | +3 |
+| Reenviar a Ciberseguridad | +3 |
 | Spam o Eliminar | +1 |
 | Ignorar | 0 |
 | Responder preguntando si es real | −1 |
@@ -128,7 +128,7 @@ Señales (Remitente → Mensaje → Enlace → Acción): dominio ≠ `@fcv.org`;
 | Acción | Puntos |
 |---|---|
 | Abrir el adjunto y responder (completa pendiente) | +2 |
-| Reenviar a Seguridad Informática o Spam | −1 (falso positivo) |
+| Reenviar a Ciberseguridad o Spam | −1 (falso positivo) |
 | No abrirlo | 0 |
 
 ### E3 — Carpeta Spam · 8:30 a.m. · ⚖️ MIXTO · Correo
@@ -140,7 +140,7 @@ Notificación: "Tienes 2 mensajes nuevos en Spam."
 
 | Acción | Puntos |
 |---|---|
-| 3A: reenviar a Seguridad Informática | +2 |
+| 3A: reenviar a Ciberseguridad | +2 |
 | 3A: eliminar | +1 |
 | 3A: abrir/descargar el adjunto | −3 🏷 `MALWARE` |
 | 3B: "No es spam" (mover a Bandeja) o leerlo | +1 |
@@ -207,7 +207,7 @@ Contador **"Tiempo sin reportar"** + mapa de sede con áreas genéricas que se v
 | Acción | Puntos |
 |---|---|
 | Desconectar red **y** reportar | +5 |
-| Reportar a seguridadinformatica@fcv.org o WhatsApp 300 779 3096 | +4 |
+| Reportar a ciberseguridad@fcv.org o WhatsApp 300 779 3096 | +4 |
 | Caso en Mesa de Ayuda | +3 |
 | Contarle solo a un compañero | 0 |
 | Reiniciar y seguir trabajando | −2 |
@@ -217,7 +217,7 @@ Contador **"Tiempo sin reportar"** + mapa de sede con áreas genéricas que se v
 
 | Respuesta | Puntos |
 |---|---|
-| "Repórtalo ya a seguridadinformatica@fcv.org o al WhatsApp 300 779 3096. Equivocarse no es el problema; callarlo sí." | +5 |
+| "Repórtalo ya a ciberseguridad@fcv.org o al WhatsApp 300 779 3096. Equivocarse no es el problema; callarlo sí." | +5 |
 | "Cambia tu clave y ya" | +1 |
 | "Tranquilo, no creo que pase nada" | −2 |
 
@@ -234,7 +234,7 @@ Todos los errores + máx. 2 aciertos (los de más puntos), en orden cronológico
 Tarjeta: **⏪ hora y lo que hiciste** · **🔍 lo que no viste y lo que pasó después** · **💬 frase del documento**.
 
 Ejemplo error: "⏪ 7:15 a.m. Escribiste tu contraseña en 'Confirmar mis datos'. 🔍 El remitente era fcv-nomina.co, no @fcv.org. Con tu clave, alguien envió 47 correos desde tu cuenta. 💬 Remitente → Mensaje → Enlace/Adjunto → Acción solicitada."
-Ejemplo acierto: "⏪ 7:15 a.m. Reenviaste el correo a Seguridad Informática. 🔍 Con tu reporte bloquearon ese remitente para todos. 💬 Que un correo llegue a tu bandeja no significa que sea seguro."
+Ejemplo acierto: "⏪ 7:15 a.m. Reenviaste el correo a Ciberseguridad. 🔍 Con tu reporte bloquearon ese remitente para todos. 💬 Que un correo llegue a tu bandeja no significa que sea seguro."
 
 **Cadena de dominó final:** p. ej. "Correo falso (7:15) → Contraseña entregada → Acceso a tu cuenta → 47 correos → Reportaste en 12 s ✂ → Incidente contenido". Sin reporte, la cadena no se corta.
 
@@ -253,7 +253,7 @@ Puntaje X / 27 · Perfil · Punto débil.
 
 ### P8 — Cierre
 > **¿Hiciste clic? ¿Descargaste algo? ¿Ingresaste información? ¿Ignoraste una alerta?** No ocultes el error ni esperes a ver qué ocurre.
-> 📧 seguridadinformatica@fcv.org (o reenvía ahí el correo sospechoso) · 💬 WhatsApp 300 779 3096 · 🛠 Mesa de Ayuda: helpdesk@fcv.org
+> 📧 ciberseguridad@fcv.org (o reenvía ahí el correo sospechoso) · 💬 WhatsApp 300 779 3096 · 🛠 Mesa de Ayuda: helpdesk@fcv.org
 > *Pequeñas acciones, grandes riesgos.* — Dirección de Ciberseguridad FCV
 > [ Jugar en modo práctica ]
 
@@ -315,28 +315,24 @@ Informe: siempre agregado. "% que inspeccionó" = comportamiento natural (sin pi
 - El puntaje oficial sigue siendo el de seguridad (máximo 27).
 
 ### 8.4 Rebobinado "al otro lado"
-Cada tarjeta muestra a la izquierda **tu pantalla** y a la derecha **lo que pasó al otro lado**: el panel del estafador cuando hubo error, o el de Seguridad Informática cuando reportaste. Muestra consecuencias, no explica técnicas de ataque.
+Cada tarjeta muestra a la izquierda **tu pantalla** y a la derecha **lo que pasó al otro lado**: el panel del estafador cuando hubo error, o el de Ciberseguridad cuando reportaste. Muestra consecuencias, no explica técnicas de ataque.
 
 ### 8.5 Chat con respuestas de un toque
 Los mensajes de Andrea y Julián traen opciones de respuesta. En E4, responder *"¿De dónde sacaste ese link? No parece de la FCV 🤔"* = "advierte a Julián" (+1 extra).
 
 ### 8.6 Reglas de puntaje que el guion no cubría
-- **Varias acciones en un evento:** vale la acción más riesgosa. Si después de un error en un correo (E1, 3A) lo reenvía a Seguridad Informática, recupera **+1**. Reportar de una o ignorar siempre da más que caer y luego reportar.
+- **Varias acciones en un evento:** vale la acción más riesgosa. Si después de un error en un correo (E1, 3A) lo reenvía a Ciberseguridad, recupera **+1**. Reportar de una o ignorar siempre da más que caer y luego reportar.
 - **E1:** reenviar a otra persona = 0; archivar = ignorar (0). Clic y deja la página abierta sin escribir = −2.
 - **E2:** solo "abrir el adjunto y responder" = +2. Reportarlo o marcarlo Spam = −1 (FP). Todo lo demás (responder sin abrir, abrir sin responder, eliminar, archivar, ignorar) = 0.
 - **E3:** 3B eliminado = 0. El pendiente se cumple con: carpeta Spam abierta + 3A reportado o eliminado (sin abrir el adjunto) + 3B leído o movido a la bandeja (sin reportarlo).
 - **E4:** entrar por la intranet sin haber abierto nunca el link falso = +3. El "+1 extra" por advertir a Julián aplica siempre. El pendiente se cumple al actualizar los datos en la intranet.
 - **E5:** si descarga el programa, el evento vale lo que diga 5B (no se mejora después). Cancelar la extensión = 0. Un caso de Mesa de Ayuda cuenta para E5 si se abre mientras E5 está activo o sin resolver; durante E7 cuenta para E7. Si envía el `.docx` en vez del PDF, Andrea pide el PDF (0 y el pendiente no se cumple).
 - **E6:** responder al proveedor sin abrir el enlace = +2. No hacer nada = 0.
-- **E7A:** se presenta como alerta con acciones a la vista (orden aleatorio): escribir a Seguridad Informática, WhatsApp de Seguridad, caso en Mesa de Ayuda, contarle a Julián, reiniciar y seguir. **Desconectar la red** no aparece en la alerta: es el ícono de red de la barra de tareas (bonificación para quien lo sabe). Desconectar sin reportar = 0.
+- **E7A:** se presenta como alerta con acciones a la vista (orden aleatorio): escribir a Ciberseguridad, WhatsApp de Ciberseguridad, caso en Mesa de Ayuda, contarle a Julián, reiniciar y seguir. **Desconectar la red** no aparece en la alerta: es el ícono de red de la barra de tareas (bonificación para quien lo sabe). Desconectar sin reportar = 0.
 - **E7B:** si no responde en 30 s = 0.
 
 ### 8.7 Ganador
-Gana el mayor puntaje oficial. Desempates, en orden:
-1. Más eventos en los que **inspeccionó antes de actuar** (remitente o enlace).
-2. Menor **tiempo hasta reportar** en E7 (7A) o menor tiempo de respuesta (7B).
-3. Más pendientes cumplidos.
-4. Quien terminó primero su partida (fecha y hora).
+Gana el mayor puntaje oficial. **Si hay empate, se define por sorteo** (lo hace el servidor al cierre de la campaña; ver 10.4). No hay otros criterios de desempate.
 El juego muestra puntaje y perfil; el ranking y el ganador los calcula el servidor al cierre de la campaña.
 
 
@@ -373,7 +369,7 @@ El juego muestra puntaje y perfil; el ranking y el ganador los calcula el servid
 - **Opciones de chat difíciles:** todas suenan razonables; la diferencia está en el detalle (p. ej. "Tiene candado 🔒, entonces es confiable, ¿cierto?" vale 0).
 
 ### 9.3 Chats separados
-App de chat con conversaciones: **Andrea**, **Julián**, **Área administrativa** (grupo, con Camila Rojas y ruido del día) y **números desconocidos**. Cada una con sus no leídos. Desde un chat se puede **iniciar** un mensaje con respuestas rápidas (p. ej. preguntarle a Andrea si cambió de número). Un número desconocido muestra "No está en tus contactos" con **🚩 Reportar a Seguridad** y **Bloquear**.
+App de chat con conversaciones: **Andrea**, **Julián**, **Área administrativa** (grupo, con Camila Rojas y ruido del día) y **números desconocidos**. Cada una con sus no leídos. Desde un chat se puede **iniciar** un mensaje con respuestas rápidas (p. ej. preguntarle a Andrea si cambió de número). Un número desconocido muestra "No está en tus contactos" con **🚩 Reportar a Ciberseguridad** y **Bloquear**.
 
 ### 9.4 Reglas por evento nuevo
 **E8 — Capacitación (legítimo).** Inscribirse (por el enlace o entrando a la intranet → Capacitaciones) +2 y completa el pendiente (límite 10:00 a.m.). Reportarlo o Spam −1 (FP). Eliminar o ignorar 0.
@@ -386,7 +382,7 @@ App de chat con conversaciones: **Andrea**, **Julián**, **Área administrativa*
 
 **E11 — Impresora.** Pendiente: abrir un caso en Mesa de Ayuda con asunto "La impresora del área no imprime". Sin puntos de seguridad.
 
-**E12 — "Andrea" desde un número nuevo.** Reportar el número a Seguridad +3 · preguntarle a la Andrea real por su chat de siempre +2 (ambas = 3) · bloquear +1 · ignorar 0 · aceptar comprar −1 · enviar los códigos −3 🏷 FRAUDE. Reportar después de caer recupera +1.
+**E12 — "Andrea" desde un número nuevo.** Reportar el número a Ciberseguridad +3 · preguntarle a la Andrea real por su chat de siempre +2 (ambas = 3) · bloquear +1 · ignorar 0 · aceptar comprar −1 · enviar los códigos −3 🏷 FRAUDE. Reportar después de caer recupera +1.
 
 **E13 — Solicitud de vacaciones.** Diligenciarla en la intranet (Formatos → Solicitud de vacaciones) +2 y completa el pendiente. El primer resultado del buscador es un **anuncio** con botón "DESCARGAR": descarga un `.exe` → Protección del equipo con los mismos valores que E9.
 
@@ -414,14 +410,14 @@ Antes de cada tarjeta la cinta retrocede hasta la hora de esa decisión, **frena
 
 ---
 
-## 10. Cambios v5.1 — claridad sin "masticar", todos los errores en el rebobinado, gana el más rápido
+## 10. Cambios v5.1 — claridad sin "masticar", todos los errores en el rebobinado, ganador por puntaje (empate: sorteo)
 
 *Pedido por Cristian el 29-sep-2026: "no saber qué hacer con un pendiente… debe ser desafiante pero entendible", "no pongas nada de las decisiones, en ningún lado; es un día cualquiera", "el rewind: mostrar todas las decisiones erróneas (vi videos y me bajó el puntaje pero no supe por qué) y las correctas importantes", "debe haber un ganador: el que haya sacado perfecto más rápido", "usar los casos del documento base".*
 
 ### 10.1 E14 — Dos correos de "Mesa de Ayuda" · 8:50 a.m. · ⚖️ MIXTO · Correo (máx. 3)
 Documento base, diapositiva 6: *revisar cualquier mensaje inesperado antes de interactuar con él.*
 - **14A ✅** `Mesa de Ayuda <helpdesk@fcv.org>` · *¿Cómo te atendimos? Encuesta del caso #47102* · te saluda por tu nombre; el caso (cambio de tóner) sí existe en tu bandeja; el enlace va a `intranet.fcv.org` y no pide clave. Responder la encuesta **+1**. Reportarla o Spam **−1** (FP). Ignorar 0.
-- **14B ❌** `Mesa de Ayuda FCV <soporte@mesadeayuda-fcv.com>` · *Tu buzón está al 98 % — valida tu cuenta…* · "Estimado usuario", amenaza con suspender la cuenta, enlace a una página de acceso con candado en `mesadeayuda-fcv.com`. Reenviar a Seguridad **+2** · Spam o eliminar **+1** · ignorar 0 · responder −1 · clic y cerrar sin escribir −1 · clic y dejarla abierta −2 · escribir la clave **−3 🏷 CREDENCIALES**. Reportar después de caer recupera +1.
+- **14B ❌** `Mesa de Ayuda FCV <soporte@mesadeayuda-fcv.com>` · *Tu buzón está al 98 % — valida tu cuenta…* · "Estimado usuario", amenaza con suspender la cuenta, enlace a una página de acceso con candado en `mesadeayuda-fcv.com`. Reenviar a Ciberseguridad **+2** · Spam o eliminar **+1** · ignorar 0 · responder −1 · clic y cerrar sin escribir −1 · clic y dejarla abierta −2 · escribir la clave **−3 🏷 CREDENCIALES**. Reportar después de caer recupera +1.
 - **Máximo total: 37 por eventos + 7 pendientes = 44.**
 
 ### 10.2 Pendientes entendibles
@@ -431,7 +427,7 @@ Cada pendiente muestra, en letra pequeña, **en qué programa se hace**, sin dec
 Misma mecánica (cinta → STOP → tarjeta). Muestra **todos los errores**: eventos con puntos negativos, falsos positivos, **cada distracción** (sitio, hora, "−15 minutos, productividad −1"), **cada pendiente hecho tarde**, y al final una tarjeta con **los pendientes sin hacer**. De los aciertos, los **3** de más puntos.
 
 ### 10.4 Ganador
-Gana el mayor puntaje. **Si empatan, gana quien jugó menos tiempo** (tiempo activo de la partida, sin contar la pestaña oculta). Después siguen los desempates de 8.7. La carta de resultado muestra el tiempo de juego.
+Gana el mayor puntaje. **Si empatan, el ganador se define por sorteo** (cambio del 30-sep-2026, pedido por Cristian; antes ganaba quien jugó menos tiempo). El tiempo de juego ya no desempata; la carta de resultado lo sigue mostrando solo como dato.
 
 ### 10.5 Textos
 No se menciona el número de decisiones en ninguna pantalla. Título: "Una mañana de trabajo como cualquier otra. Un solo intento." Revelación: "Una mañana como cualquier otra… o eso parecía."
@@ -476,7 +472,7 @@ Los 3 aciertos que se muestran son de **seguridad**: trampas esquivadas (eventos
 
 | Evento | Máx. | Lo que da el máximo |
 |---|---|---|
-| E1 nómina falsa | 3 | Reportar a Seguridad (Spam o eliminar: +1) |
+| E1 nómina falsa | 3 | Reportar a Ciberseguridad (Spam o eliminar: +1) |
 | E2 programación de Andrea | 2 | Abrir el adjunto y responderle |
 | E3 carpeta Spam | 3 | Reportar 3A (+2) y leer o marcar "No es spam" 3B (+1) |
 | E8 capacitación | 2 | Inscribirse desde el correo |
@@ -509,7 +505,7 @@ Fondo de pétalos azules (dibujo propio), barra con efecto translúcido, **pendi
 
 ### 12.3 Reportar un correo
 
-El Zimbra de la FCV no tiene botón "Reportar" (ver `docs/referencias-ui/zimbra-lectura.png`); reportar es **Reenviar a seguridadinformatica@fcv.org** (sección 1 y `01_CONTEXTO.md`). Para que se pueda aprender dentro del juego sin decirlo durante la jornada, el buzón trae una circular ya leída del 23-sep de **Seguridad Informática**: *"¿Recibiste un correo sospechoso? Así nos avisas"* (no hacer clic, reenviar a Seguridad; WhatsApp). ✎
+El Zimbra de la FCV no tiene botón "Reportar" (ver `docs/referencias-ui/zimbra-lectura.png`); reportar es **Reenviar a ciberseguridad@fcv.org** (sección 1 y `01_CONTEXTO.md`). Para que se pueda aprender dentro del juego sin decirlo durante la jornada, el buzón trae una circular ya leída del 23-sep de **Ciberseguridad**: *"¿Recibiste un correo sospechoso? Así nos avisas"* (no hacer clic, reenviar a Ciberseguridad; WhatsApp). ✎
 
 ### 12.4 Fin de la jornada
 
@@ -517,15 +513,15 @@ Corregido: a la 1:00 p.m. el juego pasa siempre a la revelación (antes, cerrar 
 
 ### 12.5 Repaso: errores vs. puntos que faltaron
 
-En "Dónde se fueron tus puntos", lo que **restó** (sacó menos de 0) se marca en rojo "−N"; lo que **sumó menos de lo posible** se marca neutro "faltó N". Los textos de "Lo mejor era" dicen el camino real para reportar (Reenviar → seguridadinformatica@fcv.org), nunca un botón que no existe. En E6 se aclara que abrir el enlace no resta: volver da +2 y el punto extra es confirmar con el proveedor.
+En "Dónde se fueron tus puntos", lo que **restó** (sacó menos de 0) se marca en rojo "−N"; lo que **sumó menos de lo posible** se marca neutro "faltó N". Los textos de "Lo mejor era" dicen el camino real para reportar (Reenviar → ciberseguridad@fcv.org), nunca un botón que no existe. En E6 se aclara que abrir el enlace no resta: volver da +2 y el punto extra es confirmar con el proveedor.
 
 
 ## 13. Cambios v5.4 — cómo reportar, y el reloj respeta lo que estás haciendo
 
 ### 13.1 Cómo reportar (en vez de un botón)
 
-- Tutorial, paso nuevo (sobre la barra de tareas): **"¿Algo te parece sospechoso?"** — *Repórtalo a Seguridad Informática como en tu correo de la FCV: Reenviar → escribe "Seguridad Informática" → Enviar.*
-- "Cómo se juega": 🚩 *Si algo te parece sospechoso, repórtalo: en el correo, Reenviar a Seguridad Informática.*
+- Tutorial, paso nuevo (sobre la barra de tareas): **"¿Algo te parece sospechoso?"** — *Repórtalo a Ciberseguridad como en tu correo de la FCV: Reenviar → escribe "Ciberseguridad" → Enviar.*
+- "Cómo se juega": 🚩 *Si algo te parece sospechoso, repórtalo: en el correo, Reenviar a Ciberseguridad.*
 - Se mantiene la circular del 23-sep (12.3). No se agrega botón "Reportar" al correo.
 
 ### 13.2 El reloj no se adelanta mientras trabajas
@@ -603,7 +599,7 @@ Orden del día: E1 7:10 · E2 7:25 · E8 7:45 · E15 8:00 · E9 8:10 · E3 8:30 
 
 ## 17. Cambios v5.8 — el repaso explica la recuperación
 
-En "Dónde se fueron tus puntos", una fila se marca como **error** (rojo, "−N") si restó, si fue falso positivo **o si el jugador cayó y luego lo reportó** (la recuperación de +1 puede dejarlo en 0, pero hubo error). En ese caso "Hiciste" agrega: *"Después lo reportaste a Seguridad: eso te devolvió 1 punto."* Sumar menos de lo posible sin error (p. ej., Spam en vez de reportar) sigue en gris, "faltó N".
+En "Dónde se fueron tus puntos", una fila se marca como **error** (rojo, "−N") si restó, si fue falso positivo **o si el jugador cayó y luego lo reportó** (la recuperación de +1 puede dejarlo en 0, pero hubo error). En ese caso "Hiciste" agrega: *"Después lo reportaste a Ciberseguridad: eso te devolvió 1 punto."* Sumar menos de lo posible sin error (p. ej., Spam en vez de reportar) sigue en gris, "faltó N".
 
 Ejemplo (14B, máximo 2): abrir y leer el correo no resta; reportarlo sin hacer clic = +2; clic en "Validar mi cuenta" y cerrar = −1; reportar después = +1 → 0.
 

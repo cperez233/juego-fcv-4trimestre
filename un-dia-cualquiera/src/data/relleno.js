@@ -57,14 +57,14 @@ export const relleno = [
     carpeta: "entrada",
     fecha: "2026-09-23T14:00",
     leido: true,
-    de: { nombre: "Seguridad Informática", correo: config.canales.seguridad },
+    de: { nombre: "Ciberseguridad", correo: config.canales.seguridad },
     para: yo,
     asunto: "¿Recibiste un correo sospechoso? Así nos avisas",
     cuerpo: [
       { tipo: "p", texto: "Que un correo llegue a tu bandeja no significa que sea seguro." },
-      { tipo: "p", texto: "Si un mensaje te parece sospechoso, no hagas clic ni abras adjuntos: usa Reenviar y envíalo a seguridadinformatica@fcv.org. Así lo bloqueamos para todos." },
+      { tipo: "p", texto: "Si un mensaje te parece sospechoso, no hagas clic ni abras adjuntos: usa Reenviar y envíalo a ciberseguridad@fcv.org. Así lo bloqueamos para todos." },
       { tipo: "p", texto: `También puedes escribirnos por WhatsApp al ${config.canales.whatsapp}.` },
-      { tipo: "firma", lineas: ["Dirección de Ciberseguridad", "Seguridad Informática"] },
+      { tipo: "firma", lineas: ["Dirección de Ciberseguridad", "Ciberseguridad"] },
     ],
   },
   {

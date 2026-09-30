@@ -564,7 +564,7 @@ function reducer(s, a) {
       return s;
     }
     case "contacto": {
-      // Número desconocido (E12 "Andrea", E16 "soporte"): 🚩 Reportar a Seguridad o Bloquear.
+      // Número desconocido (E12 "Andrea", E16 "soporte"): 🚩 Reportar a Ciberseguridad o Bloquear.
       if (s.bloqueados[a.conv]) return s;
       s = { ...s, bloqueados: { ...s.bloqueados, [a.conv]: a.accion } };
       s = registrar(s, CLAVE_DESCONOCIDO[a.conv] || "E12", a.accion);

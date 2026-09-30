@@ -10,7 +10,7 @@ import { inspeccionoAntes } from "./registro.js";
 // Claves donde se mide la inspección (correos con remitente o enlace revisables).
 const CLAVES_INSPECCION = ["E1", "E2", "E8", "3A", "3B", "14A", "14B", "E6"];
 
-/** Eventos en los que inspeccionó antes de su primera acción (desempate 1). */
+/** Eventos en los que inspeccionó antes de su primera acción (dato informativo). */
 export function eventosInspeccionados(reg) {
   return CLAVES_INSPECCION.filter((clave) => {
     const primera = reg.acciones.find((a) => a.clave === clave);
@@ -48,7 +48,7 @@ export function construirResultado(reg, { jugador, modo, inicio, fin, dispositiv
     inicio,
     fin,
     duracionMs: inicio && fin ? Date.parse(fin) - Date.parse(inicio) : null,
-    // Tiempo de juego activo (sin contar la pestaña oculta): desempate del ranking (guion 10.4).
+    // Tiempo de juego activo (sin contar la pestaña oculta): solo informativo, no desempata (guion 10.4).
     duracionActivaMs: duracionActivaMs != null ? Math.round(duracionActivaMs) : null,
     puntaje: ev.puntaje,
     puntajeCrudo: ev.puntajeCrudo,
@@ -64,6 +64,7 @@ export function construirResultado(reg, { jugador, modo, inicio, fin, dispositiv
     pendientesEstado: ev.pendientesEstado,
     distracciones: ev.distracciones,
     productividad: ev.productividad,
+    // Datos informativos; ya no se usan para desempatar (el empate se define por sorteo, guion 10.4).
     desempate: {
       duracionActivaMs: duracionActivaMs != null ? Math.round(duracionActivaMs) : null,
       inspecciones: eventosInspeccionados(reg),
@@ -76,18 +77,10 @@ export function construirResultado(reg, { jugador, modo, inicio, fin, dispositiv
 }
 
 /**
- * Orden del ranking (guion 10.4): mayor puntaje; si empatan, quien jugó menos tiempo; luego los criterios de 8.7.
- * Negativo si `a` va antes que `b`. El servidor lo usa al cierre de la campaña.
+ * Orden del ranking (guion 10.4): solo por puntaje, de mayor a menor.
+ * Devuelve 0 si empatan: el empate lo resuelve el servidor con un sorteo al cierre de la campaña.
+ * Negativo si `a` va antes que `b`.
  */
 export function compararParaRanking(a, b) {
-  if (a.puntaje !== b.puntaje) return b.puntaje - a.puntaje;
-  const da = a.desempate.duracionActivaMs ?? Infinity;
-  const db = b.desempate.duracionActivaMs ?? Infinity;
-  if (da !== db) return da - db;
-  if (a.desempate.inspecciones !== b.desempate.inspecciones) return b.desempate.inspecciones - a.desempate.inspecciones;
-  const ta = a.desempate.tReaccionE7Ms ?? Infinity;
-  const tb = b.desempate.tReaccionE7Ms ?? Infinity;
-  if (ta !== tb) return ta - tb;
-  if (a.desempate.pendientes !== b.desempate.pendientes) return b.desempate.pendientes - a.desempate.pendientes;
-  return Date.parse(a.fin) - Date.parse(b.fin);
+  return b.puntaje - a.puntaje;
 }

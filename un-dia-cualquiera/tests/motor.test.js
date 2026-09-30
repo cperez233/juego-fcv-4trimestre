@@ -371,16 +371,13 @@ describe("Resultado y desempate", () => {
     expect(R.inspeccionoAntes(reg, "E1", 200000)).toBe(false);
   });
 
-  it("ranking: puntaje, luego el más rápido, inspecciones, tiempo de reacción, pendientes y quién terminó primero", () => {
+  it("ranking: solo por puntaje; el empate queda en 0 (lo resuelve un sorteo en el servidor)", () => {
     const base = { puntaje: 20, desempate: { duracionActivaMs: 600000, inspecciones: 2, tReaccionE7Ms: 9000, pendientes: 3 }, fin: "2026-10-01T10:00:00Z" };
-    const orden = (a, b) => compararParaRanking(a, b) < 0;
-    expect(orden({ ...base, puntaje: 21 }, base)).toBe(true);
-    expect(orden({ ...base, desempate: { ...base.desempate, duracionActivaMs: 540000 } }, base)).toBe(true);
-    expect(orden({ ...base, puntaje: 21, desempate: { ...base.desempate, duracionActivaMs: 900000 } }, base)).toBe(true);
-    expect(orden({ ...base, desempate: { ...base.desempate, inspecciones: 3 } }, base)).toBe(true);
-    expect(orden({ ...base, desempate: { ...base.desempate, tReaccionE7Ms: 5000 } }, base)).toBe(true);
-    expect(orden({ ...base, desempate: { ...base.desempate, pendientes: 4 } }, base)).toBe(true);
-    expect(orden({ ...base, fin: "2026-10-01T09:00:00Z" }, base)).toBe(true);
+    expect(compararParaRanking({ ...base, puntaje: 21 }, base)).toBeLessThan(0);
+    expect(compararParaRanking(base, { ...base, puntaje: 21 })).toBeGreaterThan(0);
+    // Más rápido, más inspecciones o terminar antes ya no desempatan.
+    const masRapido = { ...base, desempate: { ...base.desempate, duracionActivaMs: 300000, inspecciones: 5 }, fin: "2026-10-01T09:00:00Z" };
+    expect(compararParaRanking(masRapido, base)).toBe(0);
   });
 });
 
